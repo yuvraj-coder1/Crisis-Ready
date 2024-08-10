@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class adminHomeScreenViewModel:ViewModel() {
-   private val _disasterList = MutableStateFlow(listOf(disaster()))
+   private val _disasterList = MutableStateFlow<List<disaster>>(emptyList())
     private val _selectedLocation = MutableStateFlow("")
     private val _selectedDisaster = MutableStateFlow("")
     val selectedLocation = _selectedLocation.asStateFlow()

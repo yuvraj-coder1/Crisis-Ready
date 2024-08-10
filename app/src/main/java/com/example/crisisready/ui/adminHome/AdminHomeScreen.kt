@@ -1,6 +1,7 @@
 package com.example.crisisready.ui.adminHome
 
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -10,12 +11,15 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
@@ -82,11 +86,15 @@ fun AdminHomeScreenContent(modifier: Modifier = Modifier) {
     ) {
         MyDropDownMenu(
             availableOptions = availableLocation,
-            onSelectedChange = { viewModel.updateSelectedLocation(it) })
+            onSelectedChange = { viewModel.updateSelectedLocation(it) },
+            selectWhat = "Location"
+        )
         Spacer(modifier = Modifier.height(16.dp))
         MyDropDownMenu(
             availableOptions = availableDisaster,
-            onSelectedChange = { viewModel.updateSelectedDisaster(it) })
+            onSelectedChange = { viewModel.updateSelectedDisaster(it) },
+            selectWhat = "Disaster"
+        )
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
@@ -97,8 +105,6 @@ fun AdminHomeScreenContent(modifier: Modifier = Modifier) {
                             disasterLocation = selectedLocation.value
                         )
                     )
-                    viewModel.updateSelectedLocation("")
-                    viewModel.updateSelectedDisaster("")
                 }
             },
             modifier = Modifier
@@ -114,39 +120,67 @@ fun AdminHomeScreenContent(modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(16.dp))
         disasterList.value.forEach {
-            AlertListItem(location = it.disasterLocation, disaster = it.disasterName)
+            AlertListItem(location = it.disasterLocation, disaster = it.disasterName, onRemove = {viewModel.removeDisaster(it)}, item = it)
         }
 
     }
 }
 
 @Composable
-fun AlertListItem(modifier: Modifier = Modifier, location: String, disaster: String) {
+fun AlertListItem(
+    modifier: Modifier = Modifier,
+    location: String,
+    disaster: String,
+    onRemove: (disaster) -> Unit = {},
+    onMap: () -> Unit = {},
+    item:disaster
+) {
     Card(
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
     ) {
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            Column(modifier = Modifier.weight(1f)) {
-                Text(text = location, style = MaterialTheme.typography.titleMedium)
-                Text(text = disaster, style = MaterialTheme.typography.bodyMedium)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Column {
+                    Text(text = location, style = MaterialTheme.typography.titleMedium)
+                    Spacer(modifier = Modifier.height(5.dp))
+                    Text(text = disaster, style = MaterialTheme.typography.bodyMedium)
+                    Spacer(modifier = Modifier.height(5.dp))
+                }
+                Spacer(modifier = Modifier.width(10.dp))
+                Icon(imageVector = Icons.Default.Add, contentDescription = null)
             }
-            Spacer(modifier = Modifier.width(5.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Text(
-                    text = "REVERT",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    color = Color.Red
-                )
-                Text(text = "Map", style = MaterialTheme.typography.bodyMedium)
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Button(onClick = {onRemove(item) }, modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "REVERT",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Red
+                    )
+                }
+                Spacer(modifier = Modifier.weight(0.5f))
+                Button(onClick = {onMap() }, modifier = Modifier.weight(1f)) {
+                    Text(
+                        text = "Map",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                    )
+                }
             }
         }
+
     }
 }
 
@@ -155,18 +189,19 @@ fun AlertListItem(modifier: Modifier = Modifier, location: String, disaster: Str
 fun MyDropDownMenu(
     modifier: Modifier = Modifier,
     availableOptions: List<String>,
-    onSelectedChange: (String) -> Unit = {}
+    onSelectedChange: (String) -> Unit = {},
+    selectWhat:String,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     var selectedAvailability by rememberSaveable {
         mutableStateOf(availableOptions[0])
     }
-
+    onSelectedChange(selectedAvailability)
     var expanded by rememberSaveable {
         mutableStateOf(false)
     }
     Text(
-        text = "Select option",
+        text = "Select $selectWhat",
         style = MaterialTheme.typography.titleMedium,
         fontWeight = FontWeight.SemiBold
     )
