@@ -110,4 +110,7 @@ dependencies {
 
     //ok-http
     implementation (libs.okhttp)
+
+    //yt-video
+    "implementation" (libs.core)
 }
