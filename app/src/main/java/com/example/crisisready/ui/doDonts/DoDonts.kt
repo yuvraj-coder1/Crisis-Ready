@@ -19,9 +19,12 @@ import androidx.compose.material.icons.filled.RadioButtonChecked
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardColors
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -52,8 +55,22 @@ val naturalDisasterList = listOf(
     (R.string.forest_fire)
 )
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DoDontsScteen(modifier: Modifier = Modifier,onclick: (String) -> Unit) {
+fun DoDontsScreenTopBar(modifier: Modifier = Modifier) {
+    CenterAlignedTopAppBar(title = { Text(text = "Do/Dont's" )})
+}
+
+@Composable
+fun DoDontsScreen(modifier: Modifier = Modifier,onclick: (String) -> Unit) {
+    Scaffold(
+        topBar = { DoDontsScreenTopBar() }
+    ) {
+        DoDontsContent(modifier = Modifier.padding(it),onclick)
+    }
+}
+@Composable
+fun DoDontsContent(modifier: Modifier = Modifier,onclick: (String) -> Unit) {
     val viewModel = DoDontsViewModel()
     Column(modifier = Modifier.fillMaxWidth()) {
         val selected by viewModel.selected.collectAsState()

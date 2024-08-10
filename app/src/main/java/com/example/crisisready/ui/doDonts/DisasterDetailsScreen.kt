@@ -13,8 +13,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.RadioButtonChecked
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,8 +27,23 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.crisisready.ui.navigation.DisasterDetails
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DisasterDetailsScreen(modifier: Modifier = Modifier, disaster: String) {
+fun DisasterDetailsScreenTopBar(modifier: Modifier = Modifier,disaster: String) {
+    CenterAlignedTopAppBar(title = { Text(text = disaster) })
+}
+
+@Composable
+fun DisasterDetailsScreen(modifier: Modifier = Modifier,disaster: String) {
+    Scaffold(
+        topBar = { DisasterDetailsScreenTopBar(disaster = disaster) }
+    ) {
+        DisasterDetailsContent(modifier = Modifier.padding(it),disaster = disaster)
+    }
+}
+
+@Composable
+fun DisasterDetailsContent(modifier: Modifier = Modifier, disaster: String) {
     Column(
         modifier = modifier
             .fillMaxWidth()
@@ -35,10 +53,6 @@ fun DisasterDetailsScreen(modifier: Modifier = Modifier, disaster: String) {
         Column(
             modifier = Modifier.verticalScroll(rememberScrollState())
         ) {
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(text = disaster)
-            }
-            Spacer(modifier = Modifier.height(10.dp))
             HorizontalDivider()
             Spacer(modifier = Modifier.height(10.dp))
             Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
