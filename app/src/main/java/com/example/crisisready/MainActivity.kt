@@ -1,5 +1,6 @@
 package com.example.crisisready
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -39,6 +40,7 @@ class MainActivity : ComponentActivity() {
             oneTapClient = Identity.getSignInClient(applicationContext)
         )
     }
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -51,11 +53,11 @@ class MainActivity : ComponentActivity() {
                             val viewModel = viewModel<SignInViewModel>()
                             val state by viewModel.state.collectAsStateWithLifecycle()
 
-//                            LaunchedEffect(key1 = Unit) {
-//                                if(googleAuthUiClient.getSignedInUser() != null) {
-//                                    navController.navigate("home")
-//                                }
-//                            }
+                            LaunchedEffect(key1 = Unit) {
+                                if(googleAuthUiClient.getSignedInUser() != null) {
+                                    navController.navigate("home")
+                                }
+                            }
 
                             val launcher = rememberLauncherForActivityResult(
                                 contract = ActivityResultContracts.StartIntentSenderForResult(),

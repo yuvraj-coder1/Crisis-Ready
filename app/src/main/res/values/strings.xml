@@ -1,3 +1,21 @@
 <resources>
     <string name="app_name">Crisis Ready</string>
+    <string name="earthquake">Earthquake</string>
+    <string name="flood">Flood</string>
+    <string name="cyclone">Cyclone</string>
+    <string name="landslide">Landslide</string>
+    <string name="tsunami">Tsunami</string>
+    <string name="heat_wave">Heat Wave</string>
+    <string name="urban_floods">Urban Floods</string>
+    <string name="fire">Fire</string>
+    <string name="drought">Drought</string>
+    <string name="thunderstorm">Thunderstorm</string>
+    <string name="forest_fire">Forest Fire</string>
+    <!-- Ward string resources -->
+    <string name="ward_a">Ward A</string>
+    <string name="ward_b">Ward B</string>
+    <string name="ward_c">Ward C</string>
+    <string name="ward_d">Ward D</string>
+    <string name="ward_e">Ward E</string>
 </resources>
+
