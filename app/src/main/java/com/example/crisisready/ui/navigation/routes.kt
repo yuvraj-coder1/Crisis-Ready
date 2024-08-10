@@ -12,4 +12,4 @@ data object Home
 data object DoDonts
 
 @Serializable
-data object DisasterDoDonts
+data class DisasterDetails(val disaster: String)

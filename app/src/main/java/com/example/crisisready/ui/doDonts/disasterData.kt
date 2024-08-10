@@ -2,7 +2,6 @@ package com.example.crisisready.ui.doDonts
 
 
 val disasterGuidelines: Map<String, Map<String, List<String>>> = mapOf(
-
     "Thunderstorm" to mapOf(
         "Do's" to listOf(
             "Stay Indoors.",

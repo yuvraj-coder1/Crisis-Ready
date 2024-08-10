@@ -53,14 +53,10 @@ val naturalDisasterList = listOf(
 )
 
 @Composable
-fun DoDonts(modifier: Modifier = Modifier) {
+fun DoDontsScteen(modifier: Modifier = Modifier,onclick: (String) -> Unit) {
     val viewModel = DoDontsViewModel()
     Column(modifier = Modifier.fillMaxWidth()) {
         val selected by viewModel.selected.collectAsState()
-        if (selected != "") {
-            DoDontDetails(disaster = selected)
-        }
-        else {
             Column(
                 modifier = modifier
                     .padding(16.dp)
@@ -78,15 +74,13 @@ fun DoDonts(modifier: Modifier = Modifier) {
                 naturalDisasterList.forEach() { disaster ->
                     Disaster(
                         name = stringResource(id = disaster),
-                        onclick = { viewModel.setSelected(it) })
+                        onclick = { onclick(it) }
+                    )
                 }
 
 
             }
         }
-
-    }
-
 }
 
 @Composable
@@ -113,98 +107,9 @@ fun Disaster(modifier: Modifier = Modifier, name: String,onclick:(String)->Unit)
     }
 }
 
-@Composable
-fun DoDontDetails(modifier: Modifier = Modifier, disaster: String) {
-    Column(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    ) {
-        Column(
-            modifier = Modifier.verticalScroll(rememberScrollState())
-        ) {
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(text = disaster)
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            HorizontalDivider()
-            Spacer(modifier = Modifier.height(10.dp))
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = "Do's",
-                    color = Color.Green,
-                    style = MaterialTheme.typography.titleMedium
-                )
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            disasterGuidelines[disaster]?.get("Do's")
-                ?.let { InfoList(iconColor = Color.Green, knowledge = it) }
-            Spacer(modifier = Modifier.height(10.dp))
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(
-                    text = "Don'ts",
-                    color = Color.Red,
-                    style = MaterialTheme.typography.titleMedium
-                )
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            disasterGuidelines[disaster]?.get("Don'ts")
-                ?.let { InfoList(iconColor = Color.Red, knowledge = it) }
-            HorizontalDivider()
-            Spacer(modifier = Modifier.height(10.dp))
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(text = "Before",fontWeight = FontWeight.Bold)
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            disasterGuidelines[disaster]?.get("Before")
-                ?.let { InfoList(iconColor = Color.Green, knowledge = it) }
 
-            Spacer(modifier = Modifier.height(10.dp))
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(text = "During",fontWeight = FontWeight.Bold)
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            disasterGuidelines[disaster]?.get("During")
-                ?.let { InfoList(iconColor = Color.Green, knowledge = it) }
-            Spacer(modifier = Modifier.height(10.dp))
-            disasterGuidelines[disaster]?.get("Before")
-                ?.let { InfoList(iconColor = Color.Green, knowledge = it) }
-
-            Spacer(modifier = Modifier.height(10.dp))
-            Row(modifier = Modifier.fillMaxWidth()) {
-                Text(text = "After",fontWeight = FontWeight.Bold)
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            disasterGuidelines[disaster]?.get("After")
-                ?.let { InfoList(iconColor = Color.Green, knowledge = it) }
-        }
-    }
-}
-
-@Composable
-fun InfoList(modifier: Modifier = Modifier, iconColor: Color, knowledge: List<String>) {
-    knowledge.forEach() {
-        DisplayInfo(iconColor = iconColor, content = it)
-    }
-}
-
-@Composable
-fun DisplayInfo(modifier: Modifier = Modifier, iconColor: Color, content: String) {
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .padding(vertical = 8.dp)
-    ) {
-        androidx.compose.material3.Icon(
-            imageVector = Icons.Default.RadioButtonChecked,
-            contentDescription = null,
-            tint = iconColor
-        )
-    }
-}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun DoDOntsPreview(modifier: Modifier = Modifier) {
-    DoDonts()
 }
