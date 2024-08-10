@@ -5,15 +5,18 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.crisisready.ui.doDonts.DoDonts
 import com.example.crisisready.ui.signIn.UserData
 
 @Composable
 fun CrisisReadyApp(modifier: Modifier = Modifier, userData: UserData?, onSignOut: () -> Unit = {}) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Home) {
+    NavHost(navController = navController, startDestination = DoDonts) {
         composable<Home> {
 
         }
-
+        composable<DoDonts> {
+            com.example.crisisready.ui.doDonts.DoDonts()
+        }
     }
 }

@@ -7,3 +7,9 @@ data object SignIn
 
 @Serializable
 data object Home
+
+@Serializable
+data object DoDonts
+
+@Serializable
+data object DisasterDoDonts
