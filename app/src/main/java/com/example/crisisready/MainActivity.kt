@@ -1,7 +1,11 @@
 package com.example.crisisready
 
 import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -34,16 +38,48 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+    private fun showPermissionDeniedDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Permission Required")
+            .setMessage("Location permission is required for this app to function. Please enable it in app settings.")
+            .setPositiveButton("Settings") { _, _ ->
+                val intent = Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS)
+                val uri = Uri.fromParts("package", packageName, null)
+                intent.data = uri
+                startActivity(intent)
+                finish() // Optionally finish this activity if you want to close it
+            }
+            .setNegativeButton("Exit") { _, _ -> finishAffinity() }
+            .setCancelable(false)
+            .show()
+    }
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                // Permission granted
+                setContentView()
+            } else {
+                // Permission denied
+                showPermissionDeniedDialog()
+            }
+        }
     private val googleAuthUiClient by lazy {
         GoogleAuthUiClient(
             context = applicationContext,
             oneTapClient = Identity.getSignInClient(applicationContext)
         )
     }
-    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Request location permissions
+        requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
         enableEdgeToEdge()
+    }
+
+    @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
+    private fun setContentView() {
         setContent {
             CrisisReadyTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) {
