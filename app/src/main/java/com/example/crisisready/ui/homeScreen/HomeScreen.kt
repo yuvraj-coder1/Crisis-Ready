@@ -24,6 +24,8 @@ import androidx.compose.material.icons.filled.Checklist
 import androidx.compose.material.icons.filled.HealthAndSafety
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.SettingsPower
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -33,11 +35,17 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -72,7 +80,22 @@ fun HomeScreen(
 fun HomeScreenTopBar(
     modifier: Modifier = Modifier,
 ) {
+    var showAlert by rememberSaveable { mutableStateOf(false) }
+    if(showAlert) {
+        AlertDialog(
+            title = { Text(text = "Log Out") },
+            text = { Text(text = "Are you sure you want to log out?") },
+            onDismissRequest = { showAlert = false },
+            confirmButton = { TextButton(onClick = { /*TODO*/ }) {
+                Text(text = "Yes")
+            }},
+            dismissButton = { TextButton(onClick = { showAlert = false }) {
+                Text(text = "No")
+            }}
+        )
+    }
     CenterAlignedTopAppBar(
+        modifier = modifier.padding(horizontal = 4.dp),
         title = {
             Text(stringResource(R.string.app_name))
         },
@@ -80,6 +103,18 @@ fun HomeScreenTopBar(
             Icon(
                 imageVector = Icons.Default.Notifications,
                 contentDescription = "notification"
+            )
+        },
+        navigationIcon = {
+            val ctx = LocalContext.current
+
+            androidx.compose.material3.Icon(
+                imageVector = Icons.Default.SettingsPower,
+                tint = Color.Red,
+                contentDescription = "Log Out",
+                modifier = Modifier.clickable { 
+                   showAlert = true
+                }
             )
         }
     )
@@ -153,7 +188,7 @@ fun HomeScreenContent(
             )
             DashboardItem(
                 icon = Icons.Default.Phone,
-                text = "Emergency Contact",
+                text = "Contact Info",
                 modifier = Modifier.weight(1f),
                 onClick = onEmergencyContactClicked
             )
@@ -183,7 +218,7 @@ fun DashboardItem(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(imageVector = icon, contentDescription = text)
-            Text(text = text, textAlign = TextAlign.Center)
+            Text(text = text, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
         }
     }
 }

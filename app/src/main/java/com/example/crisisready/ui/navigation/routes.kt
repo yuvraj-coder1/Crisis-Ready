@@ -16,3 +16,12 @@ data class DisasterDetails(val disaster: String)
 
 @Serializable
 data object Map
+
+@Serializable
+data object Contact
+
+@Serializable
+data object Ward
+
+@Serializable
+data object SafetyTips
