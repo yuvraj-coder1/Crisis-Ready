@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Map</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
+    <style>
+        #map { height: 100vh; width: 100%; }
+        #find-me {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            z-index: 1000;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #find-me:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<button id="find-me">Find My Location</button>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+<script>
+    var map = L.map('map');
+    var routingControl;
+    var userLocation = null;
+
+    function initializeMap(lat, lon) {
+        map.setView([lat, lon], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    }
+
+    function getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                userLocation = L.latLng(position.coords.latitude, position.coords.longitude);
+                initializeMap(userLocation.lat, userLocation.lng);
+                L.marker(userLocation).addTo(map)
+                    .bindPopup('You are here')
+                    .openPopup();
+
+                // Find the nearest pin or set up the routing feature
+                setupCustomPins();
+            }, function(error) {
+                alert('Error getting location: ' + error.message);
+                initializeMap(15.505, 77.35);
+            });
+        } else {
+            alert('Geolocation is not supported by this browser.');
+            initializeMap(15.505, 77.35);
+        }
+    }
+
+    function setupCustomPins() {
+        var customPins = [
+            {lat: 12.9, lon: 77.6, title: 'Camp 1'},
+            {lat: 12.89, lon: 77.58, title: 'Camp 2'},
+            {lat: 12.85, lon: 77.6, title: 'Camp 3'}
+        ];
+
+        customPins.forEach(function(pin) {
+            var marker = L.marker([pin.lat, pin.lon]).addTo(map)
+                .bindPopup(pin.title);
+
+            marker.on('click', function() {
+                if (userLocation) {
+                    showRoute(userLocation, marker.getLatLng());
+                }
+            });
+        });
+    }
+
+    function showRoute(start, end) {
+        if (routingControl) {
+            map.removeControl(routingControl);
+        }
+
+        routingControl = L.Routing.control({
+            waypoints: [
+                start,
+                end
+            ],
+            router: L.Routing.osrmv1({
+                language: 'en',
+                profile: 'driving'
+            }),
+            createMarker: function() { return null; } // Prevent default markers on the route
+        }).addTo(map);
+    }
+
+    getCurrentLocation();
+
+    document.getElementById('find-me').addEventListener('click', function() {
+        getCurrentLocation();
+    });
+</script>
+</body>
+</html>
