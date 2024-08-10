@@ -113,4 +113,8 @@ dependencies {
 
     //yt-video
     "implementation" (libs.core)
+
+    //gson
+    implementation(libs.gson)
+
 }
