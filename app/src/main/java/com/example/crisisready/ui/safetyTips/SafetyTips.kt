@@ -16,9 +16,12 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -29,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -49,17 +53,40 @@ fun SafetyTipsScreen(modifier: Modifier = Modifier) {
     Scaffold(
         topBar = { SafetyTipsTopBar() }
     ) {
-        Column(modifier = modifier
-            .padding(it)
-            .padding(16.dp)) {
-            safetyTipsList.forEach() {
-                YouTubeVideoRow(title = it.value, videoId = it.key)
+        Column(
+            modifier = modifier
+                .padding(it)
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState())
+        ) {
+            safetyTipsList.forEach {
+//                YouTubeVideoRow(title = it.value, videoId = it.key)
+                SafetyVideoList(disaster = it.key, disasterVideos = it.value)
                 Spacer(modifier = Modifier.height(10.dp))
             }
 //        YouTubeVideoRow(videoId = "B9qR2e3xyJo", title = "What To Do Before & During A Cyclone ?")
         }
     }
+}
 
+@Composable
+fun SafetyVideoList(
+    modifier: Modifier = Modifier,
+    disaster: String,
+    disasterVideos: Map<String, String>
+) {
+    Text(
+        text = disaster.uppercase(),
+        style = MaterialTheme.typography.titleLarge,
+        fontWeight = FontWeight.Bold
+    )
+    Spacer(modifier = Modifier.height(10.dp))
+    HorizontalDivider()
+    Spacer(modifier = Modifier.height(10.dp))
+    disasterVideos.forEach() {
+        YouTubeVideoRow(title = it.value, videoId = it.key)
+        Spacer(modifier = Modifier.height(10.dp))
+    }
 }
 
 @Composable
@@ -94,17 +121,16 @@ fun YouTubeVideoRow(videoId: String, title: String) {
                 .weight(0.4f)
                 .height(80.dp)
                 .padding(end = 8.dp)
-                .clip(RoundedCornerShape(8.dp))
-            ,
+                .clip(RoundedCornerShape(8.dp)),
 
-        ) {
+            ) {
             Image(
                 painter = rememberAsyncImagePainter("https://img.youtube.com/vi/$videoId/0.jpg"),
                 contentDescription = "YouTube Thumbnail",
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop,
 
-            )
+                )
             // Play button
             Image(
                 painter = rememberAsyncImagePainter("https://img.icons8.com/?size=100&id=9978&format=png&color=FA5252"),

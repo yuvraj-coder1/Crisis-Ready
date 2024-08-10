@@ -24,7 +24,6 @@ class GoogleAuthUiClient(
 
     suspend fun signIn(): IntentSender? {
         val result = try {
-
             oneTapClient.beginSignIn(
                 buildSignInRequest()
             ).await()
