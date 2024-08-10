@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.play.services.auth)
+    implementation(libs.play.services.nearby)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -78,6 +79,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
     implementation(libs.firebase.firestore)
+    implementation (libs.firebase.messaging.ktx)
     //room
     implementation(libs.androidx.navigation.runtime.ktx)
     implementation(libs.androidx.room.ktx)
@@ -113,6 +115,9 @@ dependencies {
 
     //yt-video
     "implementation" (libs.core)
+    //retrofit
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
     //gson
     implementation(libs.gson)

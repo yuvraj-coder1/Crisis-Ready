@@ -4,10 +4,12 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentSender
 import com.example.crisisready.R
-import com.example.crisisready.WEB_CLIENT_ID
+import com.example.crisisready.data.WEB_CLIENT_ID
+
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.android.gms.auth.api.identity.SignInClient
+import com.google.android.gms.common.GoogleApiAvailability
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
@@ -22,6 +24,7 @@ class GoogleAuthUiClient(
 
     suspend fun signIn(): IntentSender? {
         val result = try {
+
             oneTapClient.beginSignIn(
                 buildSignInRequest()
             ).await()
