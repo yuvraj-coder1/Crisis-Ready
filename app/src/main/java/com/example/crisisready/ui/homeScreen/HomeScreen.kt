@@ -73,14 +73,14 @@ fun HomeScreenTopBar(
     var showAlert by rememberSaveable { mutableStateOf(false) }
     if(showAlert) {
         AlertDialog(
-            title = { Text(text = "Log Out") },
-            text = { Text(text = "Are you sure you want to log out?") },
+            title = { Text(text = stringResource(R.string.log_out)) },
+            text = { Text(text = stringResource(R.string.are_you_sure_you_want_to_log_out)) },
             onDismissRequest = { showAlert = false },
             confirmButton = { TextButton(onClick = { /*TODO*/ }) {
-                Text(text = "Yes")
+                Text(text = stringResource(R.string.yes))
             }},
             dismissButton = { TextButton(onClick = { showAlert = false }) {
-                Text(text = "No")
+                Text(text = stringResource(R.string.no))
             }}
         )
     }
@@ -92,7 +92,7 @@ fun HomeScreenTopBar(
         actions = {
             Icon(
                 imageVector = Icons.Default.Notifications,
-                contentDescription = "notification"
+                contentDescription = stringResource(R.string.notification)
             )
         },
         navigationIcon = {
@@ -101,7 +101,7 @@ fun HomeScreenTopBar(
             androidx.compose.material3.Icon(
                 imageVector = Icons.Default.SettingsPower,
                 tint = Color.Red,
-                contentDescription = "Log Out",
+                contentDescription = stringResource(id = R.string.log_out),
                 modifier = Modifier.clickable { 
                    showAlert = true
                 }
@@ -123,7 +123,7 @@ fun HomeScreenContent(
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
     ) {
-        Text(text = "Alerts", style = MaterialTheme.typography.titleLarge)
+        Text(text = stringResource(R.string.alerts), style = MaterialTheme.typography.titleLarge)
         Card(
             modifier = Modifier
                 .fillMaxWidth()
@@ -135,27 +135,27 @@ fun HomeScreenContent(
             Column(
                 modifier = Modifier.padding(16.dp),
             ) {
-                Text(text = "No Alerts In Your Area")
+                Text(text = stringResource(R.string.no_alerts_in_your_area))
             }
         }
         Spacer(modifier = Modifier.padding(10.dp))
-        Text(text = "Dashboard", style = MaterialTheme.typography.titleLarge)
+        Text(text = stringResource(R.string.dashboard), style = MaterialTheme.typography.titleLarge)
         FlowRow(modifier = Modifier.fillMaxWidth()) {
             DashboardItem(
                 icon = Icons.Default.HealthAndSafety,
-                text = "Safety Tips",
+                text = stringResource(R.string.safety_tips),
                 modifier = Modifier.weight(1f),
                 onClick = onSafetyTipClicked
             )
             DashboardItem(
                 icon = Icons.Default.Checklist,
-                text = "Do's/Don'ts",
+                text = stringResource(R.string.do_s_don_ts),
                 modifier = Modifier.weight(1f),
                 onClick = onDoDontsClicked
             )
             DashboardItem(
                 icon = Icons.Default.Phone,
-                text = "Contact Info",
+                text = stringResource(R.string.contact_info),
                 modifier = Modifier.weight(1f),
                 onClick = onEmergencyContactClicked
             )
