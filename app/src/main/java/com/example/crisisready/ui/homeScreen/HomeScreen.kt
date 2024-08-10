@@ -1,6 +1,12 @@
 package com.example.crisisready.ui.homeScreen
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Icon
+import android.view.ViewGroup
+import android.webkit.GeolocationPermissions
+import android.webkit.WebChromeClient
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,6 +24,7 @@ import androidx.compose.material.icons.filled.Checklist
 import androidx.compose.material.icons.filled.HealthAndSafety
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -35,14 +42,17 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.example.crisisready.R
+import com.example.crisisready.ui.map.MapContent
 
 @Composable
 fun HomeScreen(
     modifier: Modifier = Modifier,
     onSafetyTipClicked: () -> Unit = {},
     onDoDontsClicked: () -> Unit = {},
-    onEmergencyContactClicked: () -> Unit = {}
+    onEmergencyContactClicked: () -> Unit = {},
+    onMapClicked: () -> Unit
 ) {
     Scaffold(
         topBar = { HomeScreenTopBar() }
@@ -51,7 +61,8 @@ fun HomeScreen(
             modifier = Modifier.padding(it),
             onSafetyTipClicked = onSafetyTipClicked,
             onDoDontsClicked = onDoDontsClicked,
-            onEmergencyContactClicked = onEmergencyContactClicked
+            onEmergencyContactClicked = onEmergencyContactClicked,
+            onMapClicked = onMapClicked
         )
     }
 }
@@ -79,8 +90,10 @@ fun HomeScreenTopBar(
 fun HomeScreenContent(
     modifier: Modifier = Modifier, onSafetyTipClicked: () -> Unit = {},
     onDoDontsClicked: () -> Unit = {},
-    onEmergencyContactClicked: () -> Unit = {}
+    onEmergencyContactClicked: () -> Unit = {},
+    onMapClicked: () -> Unit = {}
 ) {
+    var isUserSafe = false
     Column(
         modifier = modifier
             .padding(16.dp)
@@ -88,20 +101,41 @@ fun HomeScreenContent(
             .verticalScroll(rememberScrollState())
     ) {
         Text(text = "Alerts", style = MaterialTheme.typography.titleLarge)
-        Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(vertical = 8.dp),
-            elevation = CardDefaults.elevatedCardElevation(4.dp),
-            colors = CardDefaults.cardColors(Color.Green)
-        )
-        {
-            Column(
-                modifier = Modifier.padding(16.dp),
+        if(isUserSafe) {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                elevation = CardDefaults.elevatedCardElevation(4.dp),
+                colors = CardDefaults.cardColors(Color.Green)
+            )
+            {
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                ) {
+                    Text(text = "No Alerts In Your Area")
+                }
+            }
+        } else {
+            Card(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 8.dp),
+                elevation = CardDefaults.elevatedCardElevation(4.dp),
+                colors = CardDefaults.cardColors(Color.Red)
             ) {
-                Text(text = "No Alerts In Your Area")
+                Column(
+                    modifier = Modifier.padding(16.dp),
+                ) {
+                    Button(onClick =
+                        onMapClicked
+                    ) {
+                        Text(text = "View Map")
+                    }
+                }
             }
         }
+
         Spacer(modifier = Modifier.padding(10.dp))
         Text(text = "Dashboard", style = MaterialTheme.typography.titleLarge)
         FlowRow(modifier = Modifier.fillMaxWidth()) {
@@ -135,7 +169,9 @@ fun DashboardItem(
     onClick: () -> Unit
 ) {
     Card(
-        modifier = modifier.padding(10.dp).clickable { onClick() },
+        modifier = modifier
+            .padding(10.dp)
+            .clickable { onClick() },
         elevation = CardDefaults.elevatedCardElevation(4.dp),
         colors = CardDefaults.cardColors(
             Color.White
@@ -155,5 +191,5 @@ fun DashboardItem(
 @Preview(showBackground = true)
 @Composable
 fun HomeScreenPreview(modifier: Modifier = Modifier) {
-    HomeScreen()
+//    HomeScreen()
 }

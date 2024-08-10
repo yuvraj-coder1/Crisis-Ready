@@ -1,7 +1,9 @@
 package com.example.crisisready.ui.navigation
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -9,6 +11,7 @@ import androidx.navigation.toRoute
 import com.example.crisisready.ui.doDonts.DisasterDetailsScreen
 import com.example.crisisready.ui.doDonts.DoDontsScteen
 import com.example.crisisready.ui.homeScreen.HomeScreen
+import com.example.crisisready.ui.map.MapContent
 import com.example.crisisready.ui.signIn.UserData
 
 @Composable
@@ -17,7 +20,8 @@ fun CrisisReadyApp(modifier: Modifier = Modifier, userData: UserData?, onSignOut
     NavHost(navController = navController, startDestination = Home) {
         composable<Home> {
             HomeScreen(
-                onDoDontsClicked = {navController.navigate(DoDonts)}
+                onDoDontsClicked = {navController.navigate(DoDonts)},
+                onMapClicked = {navController.navigate(Map)}
             )
         }
         composable<DoDonts> {
@@ -26,6 +30,9 @@ fun CrisisReadyApp(modifier: Modifier = Modifier, userData: UserData?, onSignOut
         composable<DisasterDetails> {
             val args = it.toRoute<DisasterDetails>()
             DisasterDetailsScreen(disaster = args.disaster)
+        }
+        composable<Map> {
+            MapContent(url = "file:///android_asset/map.html")
         }
     }
 }

@@ -13,3 +13,6 @@ data object DoDonts
 
 @Serializable
 data class DisasterDetails(val disaster: String)
+
+@Serializable
+data object Map
