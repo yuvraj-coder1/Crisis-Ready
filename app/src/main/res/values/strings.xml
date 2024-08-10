@@ -17,5 +17,297 @@
     <string name="ward_c">Ward C</string>
     <string name="ward_d">Ward D</string>
     <string name="ward_e">Ward E</string>
+
+    <string name="are_you_sure_you_want_to_log_out">Are you sure you want to log out?</string>
+    <string name="log_out">Log Out</string>
+    <string name="alerts">Alerts</string>
+    <string name="no_alerts_in_your_area">No Alerts In Your Area</string>
+    <string name="dashboard">Dashboard</string>
+    <string name="safety_tips">Safety Tips</string>
+    <string name="do_s_don_ts">Do/Do nots</string>
+    <string name="contact_info">Contact Info</string>
+    <string name="notification">notification</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="emergency_contacts">Emergency Contacts</string>
+    <!-- Thunderstorm -->
+    <string name="thunderstorm_dos_1">Stay Indoors.</string>
+    <string name="thunderstorm_dos_2">Avoid natural lightning rods.</string>
+    <string name="thunderstorm_dos_3">Stay away from large groups.</string>
+
+    <string name="thunderstorm_donts_1">Do not keep contact with electrical items.</string>
+    <string name="thunderstorm_donts_2">Do not keep contact with metal surfaces.</string>
+    <string name="thunderstorm_donts_3">Keep animals under control.</string>
+
+    <string name="thunderstorm_before_1">Prepare an emergency kit with essential items for safety and survival.</string>
+    <string name="thunderstorm_before_2">Secure your house; carry out repairs; do not leave sharp objects loose.</string>
+    <string name="thunderstorm_before_3">Secure outside objects that could blow away and cause damage.</string>
+    <string name="thunderstorm_before_4">Remove rotting trees/broken branches that could fall and cause injury or damage.</string>
+    <string name="thunderstorm_before_5">Listen to radio, watch TV or read newspapers for weather updates and warnings.</string>
+
+    <string name="thunderstorm_during_1">Keep a watch on local weather updates and warnings.</string>
+    <string name="thunderstorm_during_2">Try to stay indoors; stay off verandas.</string>
+    <string name="thunderstorm_during_3">Unplug all electrical equipment. Do not use corded telephones. Use your battery-operated radio for news updates.</string>
+    <string name="thunderstorm_during_4">Do not touch plumbing and metal pipes. Do not use running water.</string>
+    <string name="thunderstorm_during_5">Stay away from structures with tin roofs/metal sheets.</string>
+    <string name="thunderstorm_during_6">Do not take shelter near/under trees.</string>
+    <string name="thunderstorm_during_7">Stay put if you are inside a car/bus/covered vehicle.</string>
+    <string name="thunderstorm_during_8">Do not use metallic objects; stay away from power/telephone lines.</string>
+    <string name="thunderstorm_during_9">Get out of water - pools, lakes, small boats on water bodies and take safe shelter immediately.</string>
+    <string name="thunderstorm_during_10">Remember, rubber-soled shoes and rubber tires provide NO protection from lightning.</string>
+    <string name="thunderstorm_during_11">Avoid rubbing your eyes in order to prevent eye infection, which is common during this season.</string>
+    <string name="thunderstorm_during_12">Apply a small amount of petroleum jelly to the inside of the nostrils to prevent drying of your mucous membranes.</string>
+
+    <string name="thunderstorm_after_1">Stay away from storm-damaged areas.</string>
+    <string name="thunderstorm_after_2">Listen to local radio/TV stations for updated information or instructions on weather and traffic updates.</string>
+    <string name="thunderstorm_after_3">Help children, women, elderly, and differently-abled.</string>
+    <string name="thunderstorm_after_4">Stay away from fallen trees/power lines and report them to nearest Tehsil/District HQ immediately.</string>
+
+    <!-- Earthquake -->
+    <string name="earthquake_dos_1">Identify safe places indoors and outdoors.</string>
+    <string name="earthquake_dos_2">Move away from buildings, utility wires, etc.</string>
+    <string name="earthquake_dos_3">Place large or heavy objects on lower shelves.</string>
+
+    <string name="earthquake_donts_1">Do not keep mouth uncovered.</string>
+    <string name="earthquake_donts_2">Do not operate electrical appliances.</string>
+    <string name="earthquake_donts_3">Do not light a match.</string>
+
+    <string name="earthquake_before_1">Consult a structural engineer to make your house earthquake resilient.</string>
+    <string name="earthquake_before_2">Know your seismic zone and carry out necessary structural changes in your house.</string>
+    <string name="earthquake_before_3">Preserve the design and layout drawings of your house for future reference.</string>
+    <string name="earthquake_before_4">Repair deep plaster cracks on walls and ceilings.</string>
+    <string name="earthquake_before_5">Fasten shelves securely to walls; place heavy/large objects on lower shelves. Provide strong support to power and gas appliances.</string>
+    <string name="earthquake_before_6">Prepare an emergency kit with essential items for safety and survival.</string>
+    <string name="earthquake_before_7">Develop an emergency communication and evacuation plan for your family.</string>
+    <string name="earthquake_before_8">Learn the technique of Drop-Cover-Hold.</string>
+    <string name="earthquake_before_9">Avoid flood plains and filled-up areas for construction as far as possible.</string>
+    <string name="earthquake_before_10">Educate yourself and family members about earthquake risk.</string>
+
+    <string name="earthquake_during_1">Stay calm. Do Not Panic. If you are indoors, stay inside. If you are outside, stay outside.</string>
+    <string name="earthquake_during_2">Do not use matches, candles, or any flame. Broken gas lines and fire do not mix.</string>
+    <string name="earthquake_during_3">If you are in a car, stop the car and stay inside until the earthquake stops.</string>
+    <string name="earthquake_during_4">Drop under a table; Cover your head with one hand and Hold the table till the tremors last.</string>
+    <string name="earthquake_during_5">Stay away from mirrors and windows. Do not exit the building while the earth is still shaking.</string>
+    <string name="earthquake_during_6">Move outside as soon as the tremors stop. Do not use a lift.</string>
+    <string name="earthquake_during_7">When outside, move away from buildings, trees, walls and poles/electric lines.</string>
+    <string name="earthquake_during_8">When inside a vehicle, pull over in an open place and remain inside; avoid bridges.</string>
+    <string name="earthquake_during_9">When in a structurally safe building, stay inside until shaking stops.</string>
+    <string name="earthquake_during_10">Protect yourself by staying in the corner/ under a strong table or bed/ an inside wall away from mirrors and windows.</string>
+    <string name="earthquake_during_11">If near an exit, leave the building as soon as possible.</string>
+    <string name="earthquake_during_12">If inside an old and weak structure, take the fastest and safest way out.</string>
+
+    <string name="earthquake_after_1">Do not enter damaged buildings.</string>
+    <string name="earthquake_after_2">If trapped in rubble:</string>
+    <string name="earthquake_after_3">- Do not light a matchstick.</string>
+    <string name="earthquake_after_4">- Cover your mouth with a cloth.</string>
+    <string name="earthquake_after_5">- Tap on a pipe or a wall.</string>
+    <string name="earthquake_after_6">- Sound a whistle.</string>
+    <string name="earthquake_after_7">- Shout only as a last resort. This will help you conserve energy.</string>
+    <string name="earthquake_after_8">Use stairs and not lifts or elevators.</string>
+    <string name="earthquake_after_9">Move cautiously, and check for unstable objects and other hazards above and around you. Check yourself for injuries.</string>
+    <string name="earthquake_after_10">Anticipate aftershocks, especially after a major earthquake.</string>
+    <string name="earthquake_after_11">Stay away from beaches. Tsunamis and seiches sometimes hit after the ground has stopped shaking.</string>
+    <string name="earthquake_after_12">Do not spread and/ or believe in rumours.</string>
+    <string name="earthquake_after_13">Leave a message stating where you are going if you must evacuate your house.</string>
+    <string name="earthquake_after_14">Listen to local radio/TV stations for updated information or instructions on weather and traffic updates.</string>
+    <string name="earthquake_after_15">Help children, women, elderly, and differently-abled.</string>
+    <string name="earthquake_after_16">Stay away from fallen trees/power lines and report them to the nearest Tehsil/District HQ immediately.</string>
+
+    <!-- Flood -->
+    <string name="flood_dos_1">Turn off all the electrical appliances in the house.</string>
+    <string name="flood_dos_2">Move to higher ground.</string>
+    <string name="flood_dos_3">Boil water before drinking.</string>
+
+    <string name="flood_donts_1">Do not walk or drive in floodwaters.</string>
+    <string name="flood_donts_2">Do not touch electrical equipment if you are wet or standing in water.</string>
+    <string name="flood_donts_3">Do not spread rumors or believe in rumors.</string>
+
+    <string name="flood_before_1">Prepare an emergency kit with essentials like food, water, medicine, and first aid supplies.</string>
+    <string name="flood_before_2">Store important documents in waterproof bags or containers.</string>
+    <string name="flood_before_3">Know your areas flood evacuation routes.</string>
+    <string name="flood_before_4">Keep yourself updated with weather forecasts and flood warnings.</string>
+    <string name="flood_before_5">Ensure your house drainage systems are not clogged.</string>
+
+    <string name="flood_during_1">Move immediately to higher ground.</string>
+    <string name="flood_during_2">Stay out of low-lying areas and avoid standing water.</string>
+    <string name="flood_during_3">Do not drive over bridges that are above fast-moving water.</string>
+    <string name="flood_during_4">Avoid using toilets or water taps if drains are backed up.</string>
+    <string name="flood_during_5">Stay tuned to local radio/TV for weather updates and evacuation instructions.</string>
+    <string name="flood_during_6">If time allows, move valuables to higher levels.</string>
+    <string name="flood_during_7">Avoid walking or driving through floodwaters.</string>
+    <string name="flood_during_8">Stay away from electrical wires and waterlogged areas.</string>
+    <string name="flood_during_9">Avoid touching or handling objects like fallen power lines.</string>
+    <string name="flood_during_10">Do not walk through flowing water; it can be more dangerous than it looks.</string>
+
+    <string name="flood_after_1">Wait for official news on water safety before using it for drinking.</string>
+    <string name="flood_after_2">Stay away from waterlogged areas; avoid exposure to floodwater.</string>
+    <string name="flood_after_3">Clean and disinfect everything that got wet in floodwaters.</string>
+    <string name="flood_after_4">Check for gas leaks and other hazards before entering the house.</string>
+
+    <!-- Cyclone -->
+    <string name="cyclone_dos_1">Secure your house and take precautions against potential flying debris.</string>
+    <string name="cyclone_dos_2">Close windows, shutters, and doors securely.</string>
+    <string name="cyclone_dos_3">Stay indoors and keep away from windows.</string>
+
+    <string name="cyclone_donts_1">Do not venture outside unless absolutely necessary.</string>
+    <string name="cyclone_donts_2">Do not go near the sea for any reason.</string>
+    <string name="cyclone_donts_3">Avoid spreading rumors and listen to official information sources.</string>
+
+    <string name="cyclone_before_1">Prepare an emergency kit with essential supplies, including food, water, and first aid materials.</string>
+    <string name="cyclone_before_2">Secure all loose objects outside your home.</string>
+    <string name="cyclone_before_3">Trim tree branches and remove dead trees to reduce the risk of damage.</string>
+    <string name="cyclone_before_4">Stock up on extra drinking water and store it in clean containers.</string>
+    <string name="cyclone_before_5">Stay updated with the latest weather forecasts and warnings.</string>
+
+    <string name="cyclone_during_1">Stay indoors, away from doors and windows.</string>
+    <string name="cyclone_during_2">Keep your emergency kit close at hand.</string>
+    <string name="cyclone_during_3">Listen to local news on a battery-operated radio for updates.</string>
+    <string name="cyclone_during_4">If you lose power, unplug appliances to prevent damage.</string>
+    <string name="cyclone_during_5">Do not venture outside until you hear the "all clear" signal from authorities.</string>
+    <string name="cyclone_during_6">Keep in touch with family and friends to ensure their safety.</string>
+    <string name="cyclone_during_7">Stay calm and assist children and elderly members of the family to stay calm too.</string>
+    <string name="cyclone_during_8">Avoid open spaces and tall objects, which can attract lightning during the storm.</string>
+
+    <string name="cyclone_after_1">Do not leave your shelter until it is confirmed safe to do so.</string>
+    <string name="cyclone_after_2">Avoid using electrical appliances that may have been waterlogged.</string>
+    <string name="cyclone_after_3">Be cautious of downed power lines and other hazards.</string>
+    <string name="cyclone_after_4">Check for gas leaks before using any open flame.</string>
+
+    <!-- Landslide -->
+    <string name="landslide_dos_1">Move away from the path of a landslide.</string>
+    <string name="landslide_dos_2">Listen to warnings and evacuate if necessary.</string>
+    <string name="landslide_dos_3">Watch for changes in water flow patterns, as they may signal a landslide.</string>
+
+    <string name="landslide_donts_1">Do not build houses near steep slopes, close to mountain edges, or along natural erosion valleys.</string>
+    <string name="landslide_donts_2">Do not ignore early signs of landslides, like small landslips.</string>
+    <string name="landslide_donts_3">Do not return to landslide-affected areas until declared safe.</string>
+
+    <string name="landslide_before_1">Identify landslide-prone areas near your home and avoid them during heavy rains.</string>
+    <string name="landslide_before_2">Prepare an emergency kit and have an evacuation plan ready.</string>
+    <string name="landslide_before_3">Check drainage systems and keep them clear of debris.</string>
+    <string name="landslide_before_4">Strengthen the drainage system to prevent water accumulation.</string>
+    <string name="landslide_before_5">Stay informed about weather patterns and listen for warnings.</string>
+
+    <string name="landslide_during_1">Stay alert and awake; many landslide fatalities occur when people are sleeping.</string>
+    <string name="landslide_during_2">Be especially cautious at night when visibility is low.</string>
+    <string name="landslide_during_3">If you hear a rumbling sound, move away immediately.</string>
+    <string name="landslide_during_4">Be prepared to evacuate quickly if told to do so.</string>
+    <string name="landslide_during_5">Listen to local news and weather updates for further instructions.</string>
+
+    <string name="landslide_after_1">Stay away from the landslide area; there may be a danger of additional landslides.</string>
+    <string name="landslide_after_2">Avoid using roads or bridges that may have been damaged by landslides.</string>
+    <string name="landslide_after_3">Check for structural damage to your home and get it evaluated by professionals before entering.</string>
+    <string name="landslide_after_4">Report any dangerous conditions to local authorities.</string>
+    <!-- Forest Fire -->
+    <string name="forest_fire_dos_1">Evacuate immediately if advised by authorities.</string>
+    <string name="forest_fire_dos_2">Keep windows and doors closed to prevent smoke from entering.</string>
+    <string name="forest_fire_dos_3">Stay tuned to local news for evacuation updates.</string>
+
+    <string name="forest_fire_donts_1">Do not leave your property if not ordered to evacuate.</string>
+    <string name="forest_fire_donts_2">Avoid driving through heavy smoke or flames.</string>
+    <string name="forest_fire_donts_3">Do not use flammable materials or equipment outdoors.</string>
+
+    <string name="forest_fire_before_1">Create a defensible space around your home by clearing flammable vegetation.</string>
+    <string name="forest_fire_before_2">Prepare an emergency kit with essential supplies.</string>
+    <string name="forest_fire_before_3">Stay informed about fire risks and evacuation plans.</string>
+    <string name="forest_fire_before_4">Install spark arresters on chimneys and stovepipes.</string>
+
+    <string name="forest_fire_during_1">Follow evacuation orders promptly and take your emergency kit.</string>
+    <string name="forest_fire_during_2">Close all windows, doors, and vents to prevent embers from entering.</string>
+    <string name="forest_fire_during_3">Keep a flashlight and radio with you to stay informed.</string>
+
+    <string name="forest_fire_after_1">Return home only when authorities say it is safe.</string>
+    <string name="forest_fire_after_2">Wear protective clothing and a mask when inspecting your property.</string>
+    <string name="forest_fire_after_3">Report any hot spots or smoldering areas to the fire department.</string>
+    <string name="forest_fire_after_4">Check for hazardous materials and address any risks.</string>
+
+    <string name="fire_dos_1">Know the fire escape routes in your home and workplace.</string>
+    <string name="fire_dos_2">Install smoke detectors and test them regularly.</string>
+    <string name="fire_dos_3">Keep a fire extinguisher in accessible locations.</string>
+
+    <string name="fire_donts_1">Do not leave cooking unattended.</string>
+    <string name="fire_donts_2">Avoid overloading electrical circuits.</string>
+    <string name="fire_donts_3">Do not block exits with furniture or clutter.</string>
+
+    <string name="fire_before_1">Develop a fire escape plan and practice it regularly.</string>
+    <string name="fire_before_2">Check for fire hazards in your home and make necessary repairs.</string>
+    <string name="fire_before_3">Store flammable materials safely.</string>
+    <string name="fire_before_4">Install smoke alarms and replace batteries regularly.</string>
+
+    <string name="fire_during_1">Get low to the ground to avoid smoke inhalation.</string>
+    <string name="fire_during_2">Use the back of your hand to check doors for heat before opening.</string>
+    <string name="fire_during_3">If your clothes catch fire, stop, drop, and roll.</string>
+
+    <string name="fire_after_1">Do not re-enter a burning building.</string>
+    <string name="fire_after_2">Get medical treatment for burns or smoke inhalation.</string>
+    <string name="fire_after_3">Check your home for hidden fire damage and smoke contamination.</string>
+    <string name="fire_after_4">Contact your local fire department for safety checks.</string>
+
+    <!-- Drought -->
+    <string name="drought_dos_1">Conserve water by fixing leaks and using water-efficient appliances.</string>
+    <string name="drought_dos_2">Reuse water whenever possible, such as collecting rainwater for irrigation.</string>
+    <string name="drought_dos_3">Stay informed about local water restrictions and follow them.</string>
+
+    <string name="drought_donts_1">Do not waste water on non-essential activities.</string>
+    <string name="drought_donts_2">Avoid washing cars or watering lawns during peak drought conditions.</string>
+    <string name="drought_donts_3">Do not plant water-intensive crops during drought periods.</string>
+
+    <string name="drought_before_1">Install water-saving fixtures and appliances.</string>
+    <string name="drought_before_2">Plan and plant a drought-resistant landscape.</string>
+    <string name="drought_before_3">Stock up on water in case of supply interruptions.</string>
+    <string name="drought_before_4">Educate yourself and others about water conservation practices.</string>
+
+    <string name="drought_during_1">Use water only for essential purposes.</string>
+    <string name="drought_during_2">Follow local restrictions and guidelines for water use.</string>
+    <string name="drought_during_3">Educate others about the importance of water conservation.</string>
+
+    <string name="drought_after_1">Continue practicing water conservation.</string>
+    <string name="drought_after_2">Prepare for potential after-effects, such as wildfires.</string>
+    <string name="drought_after_3">Check for any long-term damage to plants and infrastructure.</string>
+    <string name="drought_after_4">Review and update your water conservation plans as needed.</string>
+
+    <string name="tsunami_dos_1">Move to higher ground immediately if you feel an earthquake near the coast.</string>
+    <string name="tsunami_dos_2">Listen to local authorities for evacuation orders.</string>
+    <string name="tsunami_dos_3">Stay away from the coast until all tsunami waves have passed.</string>
+
+    <string name="tsunami_donts_1">Do not stay in low-lying coastal areas after a strong earthquake.</string>
+    <string name="tsunami_donts_2">Do not return to the coast until officials say it is safe.</string>
+    <string name="tsunami_donts_3">Do not go near the beach to watch the tsunami waves.</string>
+
+    <string name="tsunami_before_1">Know the tsunami evacuation routes in your area.</string>
+    <string name="tsunami_before_2">Prepare an emergency kit with food, water, and medical supplies.</string>
+    <string name="tsunami_before_3">Stay informed about tsunami risks and warnings.</string>
+
+    <string name="tsunami_during_1">Evacuate immediately if you are in a tsunami evacuation zone.</string>
+    <string name="tsunami_during_2">Move to higher ground or as far inland as possible.</string>
+    <string name="tsunami_during_3">Avoid rivers and streams that lead to the ocean.</string>
+
+    <string name="tsunami_after_1">Stay away from the coast until authorities declare it safe.</string>
+    <string name="tsunami_after_2">Avoid disaster areas to allow emergency response teams to work.</string>
+    <string name="tsunami_after_3">Check yourself for injuries and get first aid if necessary.</string>
+    <string name="tsunami_after_4">Follow local news for updates on the situation and recovery efforts.</string>
+
+    <string name="heat_wave_dos_1">Stay hydrated by drinking plenty of water.</string>
+    <string name="heat_wave_dos_2">Wear lightweight, light-colored, and loose-fitting clothing.</string>
+    <string name="heat_wave_dos_3">Stay indoors during the hottest part of the day.</string>
+
+    <string name="heat_wave_donts_1">Do not leave children or pets in parked cars.</string>
+    <string name="heat_wave_donts_2">Avoid strenuous activities during peak heat.</string>
+    <string name="heat_wave_donts_3">Do not consume alcohol or caffeine in excessive amounts.</string>
+
+    <string name="heat_wave_before_1">Know the signs of heat-related illnesses like heat exhaustion and heatstroke.</string>
+    <string name="heat_wave_before_2">Check weather forecasts and prepare for high temperatures.</string>
+    <string name="heat_wave_before_3">Plan to stay in cool places during the heatwave.</string>
+
+    <string name="heat_wave_during_1">Stay cool by taking frequent breaks in air-conditioned environments.</string>
+    <string name="heat_wave_during_2">Use fans and wear wet clothing to cool down.</string>
+    <string name="heat_wave_during_3">Seek immediate medical attention if you or someone else shows signs of heatstroke.</string>
+
+    <string name="heat_wave_after_1">Continue to stay hydrated and cool.</string>
+    <string name="heat_wave_after_2">Check on neighbors, especially the elderly and vulnerable.</string>
+    <string name="heat_wave_after_3">Avoid using heat-producing appliances until temperatures drop.</string>
+    <string name="heat_wave_after_4">Continue to monitor weather updates and follow cooling advice.</string>
+
+
 </resources>
 

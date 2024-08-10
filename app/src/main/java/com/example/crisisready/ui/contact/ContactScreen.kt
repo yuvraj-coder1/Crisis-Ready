@@ -33,13 +33,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.example.crisisready.R
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ContactScreenTopBar(modifier: Modifier = Modifier) {
-    CenterAlignedTopAppBar(title = { Text(text = "Emergency Contacts") })
+    CenterAlignedTopAppBar(title = { Text(text = stringResource(R.string.emergency_contacts)) })
 }
 
 @Composable
@@ -106,12 +108,10 @@ fun ContactListItem(modifier: Modifier = Modifier, name: String, onclick: () -> 
                             Text(text = "Call")
                         }
                     }
-
                 }
             }
 
         }
 
     }
-
 }
