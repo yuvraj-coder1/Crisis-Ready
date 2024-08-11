@@ -122,4 +122,7 @@ dependencies {
     //gson
     implementation(libs.gson)
 
+    //currentLocation
+    implementation(libs.play.services.location)
+
 }
