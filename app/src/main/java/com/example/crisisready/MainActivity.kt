@@ -32,12 +32,12 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.example.crisisready.ui.NotificationScreen
 import com.example.crisisready.ui.navigation.CrisisReadyApp
 import com.example.crisisready.ui.signIn.GoogleAuthUiClient
 import com.example.crisisready.ui.signIn.SignInScreen
 import com.example.crisisready.ui.signIn.SignInViewModel
 import com.example.crisisready.ui.theme.CrisisReadyTheme
+import com.example.crisisready.ui.transmitInformation.TransmitScreen
 import com.example.crisisready.ui.viewmodel.UserViewModel
 import com.google.android.gms.auth.api.identity.Identity
 import dagger.hilt.android.AndroidEntryPoint
@@ -112,10 +112,10 @@ class MainActivity : ComponentActivity() {
                             val state by viewModel.state.collectAsStateWithLifecycle()
 
                             LaunchedEffect(key1 = Unit) {
-//                                if (googleAuthUiClient.getSignedInUser() != null) {
+                                if (googleAuthUiClient.getSignedInUser() != null) {
                                     userViewModel.fetchAndSaveToken()
-                                    navController.navigate("notification")
-//                                }
+                                    navController.navigate("home")
+                                }
                             }
 
                             val launcher = rememberLauncherForActivityResult(
@@ -159,7 +159,7 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable("notification") {
-                            NotificationScreen()
+                            TransmitScreen()
                         }
                         composable("home") {
                             CrisisReadyApp(

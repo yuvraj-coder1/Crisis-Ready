@@ -28,6 +28,7 @@ import androidx.compose.material.icons.filled.Checklist
 import androidx.compose.material.icons.filled.HealthAndSafety
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.Phone
+import androidx.compose.material.icons.filled.Radio
 import androidx.compose.material.icons.filled.SettingsPower
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -74,7 +75,8 @@ fun HomeScreen(
     onSafetyTipClicked: () -> Unit = {},
     onDoDontsClicked: () -> Unit = {},
     onEmergencyContactClicked: () -> Unit = {},
-    onMapClicked: () -> Unit
+    onMapClicked: () -> Unit = {},
+    onTransmitInformationClicked: () -> Unit = {}
 ) {
     Scaffold(
         topBar = { HomeScreenTopBar() }
@@ -84,7 +86,8 @@ fun HomeScreen(
             onSafetyTipClicked = onSafetyTipClicked,
             onDoDontsClicked = onDoDontsClicked,
             onEmergencyContactClicked = onEmergencyContactClicked,
-            onMapClicked = onMapClicked
+            onMapClicked = onMapClicked,
+            onTransmitInformationClicked = onTransmitInformationClicked
         )
     }
 }
@@ -144,7 +147,8 @@ fun HomeScreenContent(
     modifier: Modifier = Modifier, onSafetyTipClicked: () -> Unit = {},
     onDoDontsClicked: () -> Unit = {},
     onEmergencyContactClicked: () -> Unit = {},
-    onMapClicked: () -> Unit = {}
+    onMapClicked: () -> Unit = {},
+    onTransmitInformationClicked: () -> Unit = {}
 ) {
     val viewModel: HomeScreenViewModel = hiltViewModel()
     LaunchedEffect(Unit) {
@@ -158,7 +162,7 @@ fun HomeScreenContent(
     val weather = weatherResponse.condition.text
     val pressure = weatherResponse.pressure_mb
     val icon = weatherResponse.condition.icon
-    var isUserSafe = true
+    var isUserSafe = false
     Column(
         modifier = modifier
             .padding(16.dp)
@@ -270,19 +274,22 @@ fun HomeScreenContent(
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
+                    .clickable { onMapClicked() }
                     .padding(vertical = 8.dp),
                 elevation = CardDefaults.elevatedCardElevation(4.dp),
-                colors = CardDefaults.cardColors(Color.Red)
-            ) {
+                colors = CardDefaults.cardColors(Color(160, 15, 15, 250))
+            )
+            {
                 Column(
                     modifier = Modifier.padding(16.dp),
                 ) {
-                    Button(
-                        onClick =
-                        onMapClicked
-                    ) {
-                        Text(text = "View Map")
-                    }
+                    Text(
+                        text = "You are in danger zone! There are possibilities of getting affected by the disaster! Click here to see the map.",
+                        style = MaterialTheme.typography.titleMedium,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.fillMaxWidth(),
+                        color = Color.White
+                    )
                 }
             }
         }
@@ -307,6 +314,14 @@ fun HomeScreenContent(
                 modifier = Modifier.weight(1f),
                 onClick = onEmergencyContactClicked
             )
+            if(!isUserSafe) {
+                DashboardItem(
+                    icon = Icons.Default.Radio,
+                    text = "Transmit Information",
+                    modifier = Modifier.weight(1f),
+                    onClick = onTransmitInformationClicked
+                )
+            }
         }
     }
 }
@@ -333,7 +348,7 @@ fun DashboardItem(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(imageVector = icon, contentDescription = text)
-            Text(text = text, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
+            Text(text = text, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
         }
     }
 }

@@ -15,6 +15,7 @@ import com.example.crisisready.ui.homeScreen.HomeScreen
 import com.example.crisisready.ui.map.MapContent
 import com.example.crisisready.ui.safetyTips.SafetyTipsScreen
 import com.example.crisisready.ui.signIn.UserData
+import com.example.crisisready.ui.transmitInformation.TransmitScreen
 import com.example.crisisready.ui.ward.WardScreen
 
 @Composable
@@ -26,7 +27,8 @@ fun CrisisReadyApp(modifier: Modifier = Modifier, userData: UserData?, onSignOut
                 onDoDontsClicked = { navController.navigate(DoDonts) },
                 onMapClicked = { navController.navigate(Map) },
                 onEmergencyContactClicked = { navController.navigate(Contact) },
-                onSafetyTipClicked = { navController.navigate(SafetyTips) }
+                onSafetyTipClicked = { navController.navigate(SafetyTips) },
+                onTransmitInformationClicked = {navController.navigate(TransmitInformation)}
             )
         }
         composable<DoDonts> {
@@ -48,6 +50,9 @@ fun CrisisReadyApp(modifier: Modifier = Modifier, userData: UserData?, onSignOut
         }
         composable<SafetyTips> {
             SafetyTipsScreen()
+        }
+        composable<TransmitInformation> {
+            TransmitScreen()
         }
     }
 }
