@@ -2,11 +2,14 @@ package com.example.crisisready.data.repository
 
 
 import android.location.Location
+import android.util.Log
+import com.example.crisisready.data.GlobalVariables
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
+import kotlinx.serialization.json.Json
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -92,7 +95,9 @@ class UserRepository @Inject constructor(
 
                 // Convert the list of custom pins to a JSON string
                 val json = Gson().toJson(customPins)
-
+                GlobalVariables.customPins = json
+                Log.d("TAG", "fetchAndConvertData: ${json}")
+                
             }
             .addOnFailureListener { exception ->
                 println("Error getting documents: $exception")

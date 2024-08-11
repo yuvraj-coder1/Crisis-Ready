@@ -1,3 +1,419 @@
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Leaflet Map</title>-->
+<!--    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />-->
+<!--    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />-->
+<!--    <style>-->
+<!--        #map { height: 100vh; width: 100%; }-->
+<!--        #find-me {-->
+<!--            position: absolute;-->
+<!--            bottom: 10px;-->
+<!--            right: 10px;-->
+<!--            z-index: 1000;-->
+<!--            padding: 10px;-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        #find-me:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="map"></div>-->
+<!--<button id="find-me">Find My Location</button>-->
+<!--<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>-->
+<!--<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>-->
+<!--<script>-->
+<!--    var map = L.map('map');-->
+<!--    var routingControl;-->
+<!--    var userLocation = null;-->
+
+<!--    function initializeMap(lat, lon) {-->
+<!--        map.setView([lat, lon], 13);-->
+<!--        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {-->
+<!--            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'-->
+<!--        }).addTo(map);-->
+<!--    }-->
+
+<!--    function getCurrentLocation() {-->
+<!--        if (navigator.geolocation) {-->
+<!--            navigator.geolocation.getCurrentPosition(function(position) {-->
+<!--                userLocation = L.latLng(position.coords.latitude, position.coords.longitude);-->
+<!--                initializeMap(userLocation.lat, userLocation.lng);-->
+<!--                L.marker(userLocation).addTo(map)-->
+<!--                    .bindPopup('You are here')-->
+<!--                    .openPopup();-->
+
+<!--                // Find the nearest pin or set up the routing feature-->
+<!--                setupCustomPins();-->
+<!--            }, function(error) {-->
+<!--                alert('Error getting location: ' + error.message);-->
+<!--                initializeMap(15.505, 77.35);-->
+<!--            });-->
+<!--        } else {-->
+<!--            alert('Geolocation is not supported by this browser.');-->
+<!--            initializeMap(15.505, 77.35);-->
+<!--        }-->
+<!--    }-->
+
+<!--    function setupCustomPins() {-->
+<!--        var customPins = [-->
+<!--            {lat: 12.9, lon: 77.6, title: 'Camp 1'},-->
+<!--            {lat: 12.89, lon: 77.58, title: 'Camp 2'},-->
+<!--            {lat: 12.85, lon: 77.6, title: 'Camp 3'}-->
+<!--        ];-->
+
+<!--        customPins.forEach(function(pin) {-->
+<!--            var marker = L.marker([pin.lat, pin.lon]).addTo(map)-->
+<!--                .bindPopup(pin.title);-->
+
+<!--            marker.on('click', function() {-->
+<!--                if (userLocation) {-->
+<!--                    showRoute(userLocation, marker.getLatLng());-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    }-->
+
+<!--    function showRoute(start, end) {-->
+<!--        if (routingControl) {-->
+<!--            map.removeControl(routingControl);-->
+<!--        }-->
+
+<!--        routingControl = L.Routing.control({-->
+<!--            waypoints: [-->
+<!--                start,-->
+<!--                end-->
+<!--            ],-->
+<!--            router: L.Routing.osrmv1({-->
+<!--                language: 'en',-->
+<!--                profile: 'driving'-->
+<!--            }),-->
+<!--            createMarker: function() { return null; } // Prevent default markers on the route-->
+<!--        }).addTo(map);-->
+<!--    }-->
+
+<!--    getCurrentLocation();-->
+
+<!--    document.getElementById('find-me').addEventListener('click', function() {-->
+<!--        getCurrentLocation();-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+<!--trial code for different customPins-->
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Leaflet Map</title>-->
+<!--    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />-->
+<!--    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />-->
+<!--    <style>-->
+<!--        #map { height: 100vh; width: 100%; }-->
+<!--        #find-me {-->
+<!--            position: absolute;-->
+<!--            bottom: 10px;-->
+<!--            right: 10px;-->
+<!--            z-index: 1000;-->
+<!--            padding: 10px;-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        #find-me:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="map"></div>-->
+<!--<button id="find-me">Find My Location</button>-->
+<!--<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>-->
+<!--<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>-->
+<!--<script>-->
+<!--    var map = L.map('map');-->
+<!--    var routingControl;-->
+<!--    var userLocation = null;-->
+
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--        // Retrieve the latitude and longitude from the Android interface-->
+<!--        var lat = Android.getLatitude();-->
+<!--        var lon = Android.getLongitude();-->
+
+<!--        // Retrieve custom pins data from the Android interface-->
+<!--&lt;!&ndash;        var customPins = JSON.parse(Android.getCustomPins());&ndash;&gt;-->
+
+<!--        // Initialize the map with the received coordinates-->
+<!--        initializeMap(lat, lon);-->
+
+<!--        // Set up custom pins using the retrieved data-->
+<!--&lt;!&ndash;        setupCustomPins(customPins);&ndash;&gt;-->
+<!--    });-->
+
+<!--    function initializeMap(lat, lon) {-->
+<!--        map.setView([lat, lon], 13);-->
+<!--        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {-->
+<!--            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'-->
+<!--        }).addTo(map);-->
+<!--    }-->
+
+<!--    function getCurrentLocation() {-->
+<!--        if (navigator.geolocation) {-->
+<!--            navigator.geolocation.getCurrentPosition(function(position) {-->
+<!--                userLocation = L.latLng(position.coords.latitude, position.coords.longitude);-->
+<!--                initializeMap(userLocation.lat, userLocation.lng);-->
+<!--                L.marker(userLocation).addTo(map)-->
+<!--                    .bindPopup('You are here')-->
+<!--                    .openPopup();-->
+
+<!--                // Setup custom pins with different colors-->
+<!--&lt;!&ndash;                setupCustomPins();&ndash;&gt;-->
+<!--                setupCustomPins2();-->
+<!--            }, function(error) {-->
+<!--                alert('Error getting location: ' + error.message);-->
+<!--                initializeMap(15.505, 77.35);-->
+<!--            });-->
+<!--        } else {-->
+<!--            alert('Geolocation is not supported by this browser.');-->
+<!--            initializeMap(15.505, 77.35);-->
+<!--        }-->
+<!--    }-->
+
+<!--&lt;!&ndash;    function setupCustomPins() {&ndash;&gt;-->
+<!--&lt;!&ndash;        var customPins = [&ndash;&gt;-->
+<!--&lt;!&ndash;            {lat: 12.9, lon: 77.6, title: 'Camp 1'},&ndash;&gt;-->
+<!--&lt;!&ndash;            {lat: 12.89, lon: 77.58, title: 'Camp 2'},&ndash;&gt;-->
+<!--&lt;!&ndash;            {lat: 12.85, lon: 77.6, title: 'Camp 3'}&ndash;&gt;-->
+<!--&lt;!&ndash;        ];&ndash;&gt;-->
+
+<!--&lt;!&ndash;        customPins.forEach(function(pin) {&ndash;&gt;-->
+<!--&lt;!&ndash;            L.marker([pin.lat, pin.lon]).addTo(map)&ndash;&gt;-->
+<!--&lt;!&ndash;                .bindPopup(pin.title);&ndash;&gt;-->
+<!--&lt;!&ndash;        });&ndash;&gt;-->
+<!--&lt;!&ndash;    }&ndash;&gt;-->
+
+<!--    function setupCustomPins2() {-->
+<!--        var customPins2 = [-->
+<!--            {lat: 12.91, lon: 77.61, title: 'Camp 1', color: 'glampinghub'},-->
+<!--            {lat: 12.92, lon: 77.62, title: 'Camp 2', color: 'mapmyindia'},-->
+<!--            {lat: Android.getLatitude(), lon: Android.getLongitude(), title: 'Camp 3', color: 'mapfling'},-->
+<!--            {lat: 13.91, lon: 77.61, title: 'Camp 4', color: 'glampinghub'}-->
+<!--        ];-->
+
+<!--        customPins2.forEach(function(pin) {-->
+<!--            var icon = L.icon({-->
+<!--                iconUrl: `https://www.google.com/s2/favicons?domain=${pin.color}.com`,-->
+<!--                iconSize: [32, 32],-->
+<!--                iconAnchor: [16, 32],-->
+<!--                popupAnchor: [0, -32]-->
+<!--            });-->
+
+<!--            var marker = L.marker([pin.lat, pin.lon], { icon: icon }).addTo(map)-->
+<!--                .bindPopup(pin.title);-->
+
+<!--            marker.on('click', function() {-->
+<!--                if (userLocation) {-->
+<!--                    showRoute(userLocation, marker.getLatLng());-->
+<!--                }-->
+<!--            });-->
+<!--        });-->
+<!--    }-->
+
+<!--    function showRoute(start, end) {-->
+<!--        if (routingControl) {-->
+<!--            map.removeControl(routingControl);-->
+<!--        }-->
+
+<!--        routingControl = L.Routing.control({-->
+<!--            waypoints: [-->
+<!--                start,-->
+<!--                end-->
+<!--            ],-->
+<!--            router: L.Routing.osrmv1({-->
+<!--                language: 'en',-->
+<!--                profile: 'driving'-->
+<!--            }),-->
+<!--            createMarker: function() { return null; } // Prevent default markers on the route-->
+<!--        }).addTo(map);-->
+<!--    }-->
+
+<!--    getCurrentLocation();-->
+
+<!--    document.getElementById('find-me').addEventListener('click', function() {-->
+<!--        getCurrentLocation();-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--trial code for filter in map-->
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <title>Leaflet Map</title>-->
+<!--    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />-->
+<!--    <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />-->
+<!--    <style>-->
+<!--        #map { height: 100vh; width: 100%; }-->
+<!--        #find-me {-->
+<!--            position: absolute;-->
+<!--            bottom: 60px;-->
+<!--            right: 10px;-->
+<!--            z-index: 1000;-->
+<!--            padding: 10px;-->
+<!--            background-color: #007bff;-->
+<!--            color: white;-->
+<!--            border: none;-->
+<!--            border-radius: 5px;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!--        #find-me:hover {-->
+<!--            background-color: #0056b3;-->
+<!--        }-->
+<!--        #filter {-->
+<!--            position: absolute;-->
+<!--            bottom: 10px;-->
+<!--            right: 10px;-->
+<!--            z-index: 1000;-->
+<!--            padding: 10px;-->
+<!--            background-color: #f8f9fa;-->
+<!--            border: 1px solid #ccc;-->
+<!--            border-radius: 5px;-->
+<!--        }-->
+<!--    </style>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div id="map"></div>-->
+<!--<button id="find-me">Find My Location</button>-->
+<!--<select id="filter">-->
+<!--    <option value="all">Show All</option>-->
+<!--    <option value="glampinghub">Glampinghub</option>-->
+<!--    <option value="mapmyindia">Mapmyindia</option>-->
+<!--    <option value="mapfling">Mapfling</option>-->
+<!--</select>-->
+<!--<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>-->
+<!--<script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>-->
+<!--<script>-->
+<!--    var map = L.map('map');-->
+<!--    var routingControl;-->
+<!--    var userLocation = null;-->
+<!--    var markers = [];-->
+
+<!--    function initializeMap(lat, lon) {-->
+<!--        map.setView([lat, lon], 13);-->
+<!--        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {-->
+<!--            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'-->
+<!--        }).addTo(map);-->
+<!--    }-->
+
+<!--    function getCurrentLocation() {-->
+<!--        if (navigator.geolocation) {-->
+<!--            navigator.geolocation.getCurrentPosition(function(position) {-->
+<!--                userLocation = L.latLng(position.coords.latitude, position.coords.longitude);-->
+<!--                initializeMap(userLocation.lat, userLocation.lng);-->
+<!--                L.marker(userLocation).addTo(map)-->
+<!--                    .bindPopup('You are here')-->
+<!--                    .openPopup();-->
+
+<!--                // Setup custom pins with different colors-->
+<!--                setupCustomPins2();-->
+<!--            }, function(error) {-->
+<!--                alert('Error getting location: ' + error.message);-->
+<!--                initializeMap(15.505, 77.35);-->
+<!--            });-->
+<!--        } else {-->
+<!--            alert('Geolocation is not supported by this browser.');-->
+<!--            initializeMap(15.505, 77.35);-->
+<!--        }-->
+<!--    }-->
+
+<!--    function setupCustomPins2() {-->
+<!--        var customPins2 = [-->
+<!--            {lat: 12.91, lon: 77.61, title: 'Camp 1', color: 'glampinghub'},-->
+<!--            {lat: 12.92, lon: 77.62, title: 'Camp 2', color: 'mapmyindia'},-->
+<!--            {lat: 12.93, lon: 77.63, title: 'Camp 3', color: 'mapfling'},-->
+<!--            {lat: 13.91, lon: 77.61, title: 'Camp 4', color: 'glampinghub'}-->
+<!--        ];-->
+
+<!--        // Clear existing markers-->
+<!--        markers.forEach(marker => map.removeLayer(marker));-->
+<!--        markers = [];-->
+
+<!--        customPins2.forEach(function(pin) {-->
+<!--            var icon = L.icon({-->
+<!--                iconUrl: `https://www.google.com/s2/favicons?domain=${pin.color}.com`,-->
+<!--                iconSize: [32, 32],-->
+<!--                iconAnchor: [16, 32],-->
+<!--                popupAnchor: [0, -32]-->
+<!--            });-->
+
+<!--            var marker = L.marker([pin.lat, pin.lon], { icon: icon }).addTo(map)-->
+<!--                .bindPopup(pin.title);-->
+
+<!--            marker.on('click', function() {-->
+<!--                if (userLocation) {-->
+<!--                    showRoute(userLocation, marker.getLatLng());-->
+<!--                }-->
+<!--            });-->
+
+<!--            markers.push(marker);-->
+<!--        });-->
+<!--    }-->
+
+<!--    function showRoute(start, end) {-->
+<!--        if (routingControl) {-->
+<!--            map.removeControl(routingControl);-->
+<!--        }-->
+
+<!--        routingControl = L.Routing.control({-->
+<!--            waypoints: [-->
+<!--                start,-->
+<!--                end-->
+<!--            ],-->
+<!--            router: L.Routing.osrmv1({-->
+<!--                language: 'en',-->
+<!--                profile: 'driving'-->
+<!--            }),-->
+<!--            createMarker: function() { return null; } // Prevent default markers on the route-->
+<!--        }).addTo(map);-->
+<!--    }-->
+
+<!--    document.getElementById('filter').addEventListener('change', function(event) {-->
+<!--        var selectedColor = event.target.value;-->
+<!--        if (selectedColor === 'all') {-->
+<!--            setupCustomPins2();-->
+<!--        } else {-->
+<!--            // Filter pins based on the selected color-->
+<!--            setupCustomPins2();-->
+<!--            markers.forEach(marker => {-->
+<!--                marker.remove();-->
+<!--                if (marker.options.icon.options.iconUrl.includes(selectedColor)) {-->
+<!--                    marker.addTo(map);-->
+<!--                }-->
+<!--            });-->
+<!--        }-->
+<!--    });-->
+
+<!--    getCurrentLocation();-->
+
+<!--    document.getElementById('find-me').addEventListener('click', function() {-->
+<!--        getCurrentLocation();-->
+<!--    });-->
+<!--</script>-->
+<!--</body>-->
+<!--</html>-->
+
+
+<!--new code-->
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,11 +422,16 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
     <style>
         #map { height: 100vh; width: 100%; }
-        #find-me {
+        #controls {
             position: absolute;
             bottom: 10px;
             right: 10px;
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        #find-me {
             padding: 10px;
             background-color: #007bff;
             color: white;
@@ -21,17 +442,47 @@
         #find-me:hover {
             background-color: #0056b3;
         }
+        #filter {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+        }
     </style>
 </head>
 <body>
 <div id="map"></div>
-<button id="find-me">Find My Location</button>
+<div id="controls">
+    <select id="filter">
+        <option value="all">Show All</option>
+        <option value="glampinghub">Safe Camp</option>
+        <option value="mapfling">Help Needed</option>
+        <option value="mapmyindia">Other</option>
+    </select>
+    <button id="find-me">Find My Location</button>
+</div>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
 <script>
     var map = L.map('map');
     var routingControl;
     var userLocation = null;
+    var markers = [];
+
+    document.addEventListener("DOMContentLoaded", function() {
+<!--        // Retrieve the latitude and longitude from the Android interface-->
+<!--        var lat = Android.getLatitude();-->
+<!--        var lon = Android.getLongitude();-->
+
+        // Retrieve custom pins data from the Android interface
+        var customPins = JSON.parse(Android.getCustomPins());
+
+<!--        // Initialize the map with the received coordinates-->
+<!--        initializeMap(lat, lon);-->
+
+        // Set up custom pins using the retrieved data
+        setupCustomPins(customPins);
+    });
 
     function initializeMap(lat, lon) {
         map.setView([lat, lon], 13);
@@ -49,8 +500,8 @@
                     .bindPopup('You are here')
                     .openPopup();
 
-                // Find the nearest pin or set up the routing feature
-                setupCustomPins();
+                // Setup custom pins with different colors
+                setupCustomPins(customPins);
             }, function(error) {
                 alert('Error getting location: ' + error.message);
                 initializeMap(15.505, 77.35);
@@ -61,15 +512,27 @@
         }
     }
 
-    function setupCustomPins() {
-        var customPins = [
-            {lat: 12.9, lon: 77.6, title: 'Camp 1'},
-            {lat: 12.89, lon: 77.58, title: 'Camp 2'},
-            {lat: 12.85, lon: 77.6, title: 'Camp 3'}
-        ];
+    function setupCustomPins(pins) {
+<!--        var customPins = [-->
+<!--            {lat: 12.91, lon: 77.61, title: 'Camp 1', color: 'glampinghub'},-->
+<!--            {lat: 12.92, lon: 77.62, title: 'Camp 2', color: 'mapmyindia'},-->
+<!--            {lat: 12.93, lon: 77.63, title: 'Camp 3', color: 'mapfling'},-->
+<!--            {lat: 13.91, lon: 77.61, title: 'Camp 4', color: 'glampinghub'}-->
+<!--        ];-->
 
-        customPins.forEach(function(pin) {
-            var marker = L.marker([pin.lat, pin.lon]).addTo(map)
+        // Clear existing markers
+        markers.forEach(marker => map.removeLayer(marker));
+        markers = [];
+
+        pins.forEach(function(pin) {
+            var icon = L.icon({
+                iconUrl: `https://www.google.com/s2/favicons?domain=${pin.color}.com`,
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            });
+
+            var marker = L.marker([pin.lat, pin.lon], { icon: icon }).addTo(map)
                 .bindPopup(pin.title);
 
             marker.on('click', function() {
@@ -77,6 +540,8 @@
                     showRoute(userLocation, marker.getLatLng());
                 }
             });
+
+            markers.push(marker);
         });
     }
 
@@ -98,6 +563,22 @@
         }).addTo(map);
     }
 
+    document.getElementById('filter').addEventListener('change', function(event) {
+        var selectedColor = event.target.value;
+        if (selectedColor === 'all') {
+            setupCustomPins(customPins);
+        } else {
+            // Filter pins based on the selected color
+            setupCustomPins(customPins);
+            markers.forEach(marker => {
+                marker.remove();
+                if (marker.options.icon.options.iconUrl.includes(selectedColor)) {
+                    marker.addTo(map);
+                }
+            });
+        }
+    });
+
     getCurrentLocation();
 
     document.getElementById('find-me').addEventListener('click', function() {
@@ -106,3 +587,4 @@
 </script>
 </body>
 </html>
+
