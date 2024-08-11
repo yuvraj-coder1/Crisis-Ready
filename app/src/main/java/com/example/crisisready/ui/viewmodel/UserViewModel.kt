@@ -35,7 +35,7 @@ import javax.inject.Inject
 @HiltViewModel
 class UserViewModel @Inject constructor(
     private val repository: UserRepository,
-    private val api: FcmApi,
+
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -85,22 +85,5 @@ class UserViewModel @Inject constructor(
         }
     }
 
-    fun sendNotification() {
-        viewModelScope.launch {
-            val messageDto = SendMessageDto(
-                to = null,
-                notification = NotificationBody(
-                    title = "Test Notification",
-                    body = "This is a test notification sent from the app."
-                )
-            )
-            try {
-                api.broadCast(messageDto)
-            } catch (e: HttpException) {
-                e.printStackTrace()
-            } catch (e: IOException) {
-                e.printStackTrace()
-            }
-        }
-    }
+
 }

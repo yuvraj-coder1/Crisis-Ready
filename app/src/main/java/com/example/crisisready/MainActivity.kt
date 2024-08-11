@@ -32,6 +32,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.crisisready.ui.adminHome.AdminHomeScreen
 import com.example.crisisready.ui.navigation.CrisisReadyApp
 import com.example.crisisready.ui.signIn.GoogleAuthUiClient
 import com.example.crisisready.ui.signIn.SignInScreen
@@ -159,7 +160,7 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable("notification") {
-                            TransmitScreen()
+                           AdminHomeScreen()
                         }
                         composable("home") {
                             CrisisReadyApp(

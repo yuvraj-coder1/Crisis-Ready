@@ -38,14 +38,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.crisisready.ui.doDonts.Disaster
 import com.example.crisisready.ui.doDonts.naturalDisasterList
 import com.example.crisisready.ui.homeScreen.HomeScreenTopBar
+import com.example.crisisready.ui.viewmodel.UserViewModel
 
 
 @Composable
-fun AdminHomeScreen(modifier: Modifier = Modifier) {
+fun AdminHomeScreen(modifier: Modifier = Modifier, userViewModel: UserViewModel = hiltViewModel()) {
     Scaffold(
         topBar = { HomeScreenTopBar() }
     ) {
@@ -55,7 +57,7 @@ fun AdminHomeScreen(modifier: Modifier = Modifier) {
 
 @Composable
 fun AdminHomeScreenContent(modifier: Modifier = Modifier) {
-    val viewModel: adminHomeScreenViewModel = viewModel()
+    val viewModel: adminHomeScreenViewModel = hiltViewModel()
     val disasterList = viewModel.disasterList.collectAsState()
     val selectedDisaster = viewModel.selectedDisaster.collectAsState()
     val selectedLocation = viewModel.selectedLocation.collectAsState()
@@ -99,6 +101,7 @@ fun AdminHomeScreenContent(modifier: Modifier = Modifier) {
         Button(
             onClick = {
                 if (selectedDisaster.value.isNotEmpty() && selectedLocation.value.isNotEmpty()) {
+                    viewModel.sendNotification()
                     viewModel.addDisaster(
                         disaster(
                             disasterName = selectedDisaster.value,
@@ -120,7 +123,12 @@ fun AdminHomeScreenContent(modifier: Modifier = Modifier) {
         )
         Spacer(modifier = Modifier.height(16.dp))
         disasterList.value.forEach {
-            AlertListItem(location = it.disasterLocation, disaster = it.disasterName, onRemove = {viewModel.removeDisaster(it)}, item = it)
+            AlertListItem(
+                location = it.disasterLocation,
+                disaster = it.disasterName,
+                onRemove = { viewModel.removeDisaster(it) },
+                item = it
+            )
         }
 
     }
@@ -133,7 +141,7 @@ fun AlertListItem(
     disaster: String,
     onRemove: (disaster) -> Unit = {},
     onMap: () -> Unit = {},
-    item:disaster
+    item: disaster
 ) {
     Card(
         modifier = modifier
@@ -162,7 +170,7 @@ fun AlertListItem(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(onClick = {onRemove(item) }, modifier = Modifier.weight(1f)) {
+                Button(onClick = { onRemove(item) }, modifier = Modifier.weight(1f)) {
                     Text(
                         text = "REVERT",
                         style = MaterialTheme.typography.titleMedium,
@@ -171,7 +179,7 @@ fun AlertListItem(
                     )
                 }
                 Spacer(modifier = Modifier.weight(0.5f))
-                Button(onClick = {onMap() }, modifier = Modifier.weight(1f)) {
+                Button(onClick = { onMap() }, modifier = Modifier.weight(1f)) {
                     Text(
                         text = "Map",
                         style = MaterialTheme.typography.titleMedium,
@@ -190,7 +198,7 @@ fun MyDropDownMenu(
     modifier: Modifier = Modifier,
     availableOptions: List<String>,
     onSelectedChange: (String) -> Unit = {},
-    selectWhat:String,
+    selectWhat: String,
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     var selectedAvailability by rememberSaveable {

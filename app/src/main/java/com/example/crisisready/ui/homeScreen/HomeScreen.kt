@@ -76,10 +76,11 @@ fun HomeScreen(
     onDoDontsClicked: () -> Unit = {},
     onEmergencyContactClicked: () -> Unit = {},
     onMapClicked: () -> Unit = {},
-    onTransmitInformationClicked: () -> Unit = {}
+    onTransmitInformationClicked: () -> Unit = {},
+    onSignOut: () -> Unit = {}
 ) {
     Scaffold(
-        topBar = { HomeScreenTopBar() }
+        topBar = { HomeScreenTopBar( onSignOut=onSignOut) }
     ) {
         HomeScreenContent(
             modifier = Modifier.padding(it),
@@ -87,7 +88,8 @@ fun HomeScreen(
             onDoDontsClicked = onDoDontsClicked,
             onEmergencyContactClicked = onEmergencyContactClicked,
             onMapClicked = onMapClicked,
-            onTransmitInformationClicked = onTransmitInformationClicked
+            onTransmitInformationClicked = onTransmitInformationClicked,
+
         )
     }
 }
@@ -95,7 +97,7 @@ fun HomeScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreenTopBar(
-    modifier: Modifier = Modifier,
+    modifier: Modifier = Modifier,onSignOut: () -> Unit={}
 ) {
     var showAlert by rememberSaveable { mutableStateOf(false) }
     if (showAlert) {
@@ -104,7 +106,7 @@ fun HomeScreenTopBar(
             text = { Text(text = stringResource(R.string.are_you_sure_you_want_to_log_out)) },
             onDismissRequest = { showAlert = false },
             confirmButton = {
-                TextButton(onClick = { /*TODO*/ }) {
+                TextButton(onClick = { onSignOut() }) {
                     Text(text = stringResource(R.string.yes))
                 }
             },
@@ -348,7 +350,9 @@ fun DashboardItem(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(imageVector = icon, contentDescription = text)
-            Text(text = text, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(top = 4.dp))
+            Text(text = text, textAlign = TextAlign.Center, modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 4.dp))
         }
     }
 }

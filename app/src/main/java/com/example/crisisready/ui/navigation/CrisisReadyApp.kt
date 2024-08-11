@@ -28,7 +28,8 @@ fun CrisisReadyApp(modifier: Modifier = Modifier, userData: UserData?, onSignOut
                 onMapClicked = { navController.navigate(Map) },
                 onEmergencyContactClicked = { navController.navigate(Contact) },
                 onSafetyTipClicked = { navController.navigate(SafetyTips) },
-                onTransmitInformationClicked = {navController.navigate(TransmitInformation)}
+                onTransmitInformationClicked = {navController.navigate(TransmitInformation)},
+                onSignOut = onSignOut
             )
         }
         composable<DoDonts> {
