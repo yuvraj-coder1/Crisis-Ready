@@ -559,7 +559,10 @@
                 language: 'en',
                 profile: 'driving'
             }),
-            createMarker: function() { return null; } // Prevent default markers on the route
+            createMarker: function() { return null; }, // Prevent default markers on the route
+            routeLine: function(route, options) {
+                return L.polyline(route.getLatLngs(), { color: 'blue', weight: 5 });
+            }
         }).addTo(map);
     }
 
