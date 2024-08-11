@@ -122,4 +122,7 @@ dependencies {
     //gson
     implementation(libs.gson)
 
+    implementation(libs.retrofit2.kotlinx.serialization.converter)
+    implementation(libs.okhttp.v4110)
+
 }
