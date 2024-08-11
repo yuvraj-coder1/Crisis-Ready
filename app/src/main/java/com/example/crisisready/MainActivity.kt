@@ -2,11 +2,11 @@ package com.example.crisisready
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
-import android.content.Intent
-import android.net.Uri
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
@@ -26,7 +26,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -41,7 +40,6 @@ import com.example.crisisready.ui.signIn.SignInViewModel
 import com.example.crisisready.ui.theme.CrisisReadyTheme
 import com.example.crisisready.ui.viewmodel.UserViewModel
 import com.google.android.gms.auth.api.identity.Identity
-import com.google.android.gms.common.GoogleApiAvailability
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -67,6 +65,7 @@ class MainActivity : ComponentActivity() {
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
                 // Permission granted
+
                 setContentView()
             } else {
                 // Permission denied
@@ -85,9 +84,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Request location permissions
-        requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
-        GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
-        // Create Notification Channel for Android 8.0+
+        requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)         // Create Notification Channel for Android 8.0+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val name = "Default Channel"
             val descriptionText = "Default Channel Description"
@@ -115,10 +112,10 @@ class MainActivity : ComponentActivity() {
                             val state by viewModel.state.collectAsStateWithLifecycle()
 
                             LaunchedEffect(key1 = Unit) {
-                                if (googleAuthUiClient.getSignedInUser() != null) {
+//                                if (googleAuthUiClient.getSignedInUser() != null) {
                                     userViewModel.fetchAndSaveToken()
-                                    navController.navigate("home")
-                                }
+                                    navController.navigate("notification")
+//                                }
                             }
 
                             val launcher = rememberLauncherForActivityResult(
