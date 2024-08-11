@@ -1,6 +1,7 @@
 package com.example.crisisready.ui.map
 
 import android.annotation.SuppressLint
+import android.util.Log
 import android.view.ViewGroup
 import android.webkit.GeolocationPermissions
 import android.webkit.WebChromeClient
@@ -12,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import com.example.crisisready.data.GlobalVariables
 
 
 @SuppressLint("SetJavaScriptEnabled")
@@ -35,6 +37,10 @@ fun MapContent(url: String) {
                         callback.invoke(origin, true, false)
                     }
                 }
+
+                // Add the JavaScript interface
+                Log.d("TAG", "what are we sending: ${GlobalVariables.customPins}")
+                addJavascriptInterface(WebAppInterface(it.applicationContext, GlobalVariables.customPins), "Android")
 
                 loadUrl(url)
             }
