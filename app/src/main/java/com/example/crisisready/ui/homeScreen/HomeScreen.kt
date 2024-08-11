@@ -7,6 +7,7 @@ import android.webkit.GeolocationPermissions
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -17,6 +18,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -40,6 +43,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -49,13 +53,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.hilt.navigation.compose.hiltViewModel
+import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
 import com.example.crisisready.R
+import com.example.crisisready.data.WEB_API_KEY
+import com.example.crisisready.model.Current
 import com.example.crisisready.ui.map.MapContent
 
 @Composable
@@ -136,6 +146,18 @@ fun HomeScreenContent(
     onEmergencyContactClicked: () -> Unit = {},
     onMapClicked: () -> Unit = {}
 ) {
+    val viewModel: HomeScreenViewModel = hiltViewModel()
+    LaunchedEffect(Unit) {
+        viewModel.loadCurrentWeather(WEB_API_KEY, "Bangalore")
+    }
+    val weatherResponse = viewModel.weatherResponse.value?.current ?: Current()
+    val location = "Bangalore"
+    val temperature = weatherResponse.temp_c
+    val humidity = weatherResponse.humidity
+    val wind = weatherResponse.wind_mph
+    val weather = weatherResponse.condition.text
+    val pressure = weatherResponse.pressure_mb
+    val icon = weatherResponse.condition.icon
     var isUserSafe = true
     Column(
         modifier = modifier
@@ -143,8 +165,84 @@ fun HomeScreenContent(
             .fillMaxWidth()
             .verticalScroll(rememberScrollState())
     ) {
-        if (!isUserSafe)
-        Text(text =  "Alerts", style = MaterialTheme.typography.titleLarge)
+        Card(
+            modifier = Modifier.fillMaxWidth(),
+            colors = CardDefaults.cardColors(Color(24, 61, 77, 255))
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+                    .padding(bottom = 16.dp),
+            ) {
+                Text(
+                    text = location,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth()
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Column(
+                        verticalArrangement = Arrangement.Center,
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier.weight(0.5f)
+                    ) {
+                        Image(
+//                            painter = painterResource(id = R.drawable.partially_cloudy),
+                            painter = rememberAsyncImagePainter("https://$icon"),
+                            contentDescription = weather,
+                            modifier = Modifier.size(50.dp)
+                        )
+
+//                        AsyncImage(model = icon, contentDescription = )
+                        Text(
+                            text = weather,
+                            style = MaterialTheme.typography.titleSmall,
+                            color = Color.White,
+                            modifier = Modifier.fillMaxWidth(),
+                            textAlign = TextAlign.Center
+                        )
+                    }
+
+                    Text(
+                        text = "$temperature °C",
+                        style = MaterialTheme.typography.titleLarge,
+                        color = Color.White
+                    )
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column {
+                        Text(
+                            text = "Humidity: $humidity %",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = Color.White
+                        )
+                        Text(
+                            text = "Wind: $wind mph",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = Color.White
+                        )
+                        Text(
+                            text = "Pressure: $pressure mb",
+                            style = MaterialTheme.typography.titleSmall,
+                            color = Color.White
+                        )
+
+                    }
+
+                }
+            }
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+        if (!isUserSafe) {
+            Text(text = "Alerts", style = MaterialTheme.typography.titleLarge)
+        }
         if (isUserSafe) {
             Card(
                 modifier = Modifier
