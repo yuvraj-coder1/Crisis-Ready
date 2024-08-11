@@ -25,3 +25,6 @@ data object Ward
 
 @Serializable
 data object SafetyTips
+
+@Serializable
+data object TransmitInformation

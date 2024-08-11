@@ -1,4 +1,4 @@
-package com.example.crisisready.ui
+package com.example.crisisready.ui.transmitInformation
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
@@ -27,7 +26,7 @@ import com.example.crisisready.ui.viewmodel.UserViewModel
 
 @SuppressLint("MissingPermission")
 @Composable
-fun NotificationScreen(viewModel: UserViewModel = hiltViewModel()) {
+fun TransmitScreen(viewModel: UserViewModel = hiltViewModel()) {
     Column(
         modifier = Modifier
             .fillMaxSize()
