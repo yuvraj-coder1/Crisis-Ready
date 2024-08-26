@@ -23,13 +23,23 @@ Crisis-Ready is a comprehensive disaster management Android app designed to enha
 - Firebase
 
 ## Screenshots
-
-<div style="text-align:center;">
-    <div>
+<div style="display: flex; flex-wrap: wrap; justify-content: center;">
+    <div style="margin: 10px;">
         <p><em>App Main Screen</em></p>
-        <img src="![image](https://github.com/user-attachments/assets/dc0fd793-cab1-4621-ae95-9111b99f9175)" alt="App Main Screen" width="400" height="700">
+        <img src="https://github.com/user-attachments/assets/dc0fd793-cab1-4621-ae95-9111b99f9175" alt="App Main Screen" width="300" height="500">
+    </div>
+    <div style="margin: 10px;">
+        <p><em>Map</em></p>
+        <img src="https://github.com/user-attachments/assets/25d7215e-6f16-4080-a0b6-840acfe82ffa" alt="Map" width="300" height="500">
+    </div>
+    <div style="margin: 10px;">
+        <p><em>Admin Side during Crisis</em></p>
+        <img src="https://github.com/user-attachments/assets/bd9e4738-818f-474a-879c-fd93e52e087c" alt="Admin Side" width="300" height="500">
     </div>
 </div>
+
+## Demo - Video
+https://drive.google.com/file/d/1LleEDaPaa48979N7VZ1iQVsLQpMw28Fv/view?usp=sharing
 
 ## Usage
 1. Clone the repository to your local machine:
